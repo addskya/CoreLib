@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="OptionItemView">
+        <attr name="icon" />
+        <attr name="text" format="string|reference" />
+        <attr name="textColor" format="color|reference" />
+        <attr name="value" format="string|reference" />
+        <attr name="valueColor" format="color|reference" />
+        <attr name="hint" format="string|reference" />
+        <attr name="arrow" format="boolean|reference" />
+    </declare-styleable>
+
+    <attr name="icon" format="reference" />
+
+    <declare-styleable name="ActionItemView">
+        <attr name="icon" />
+    </declare-styleable>
+
+    <declare-styleable name="PersistentView">
+        <attr name="persistentKey" format="string|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="SimpleImageView">
+        <attr name="src" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="RecyclerView">
+        <attr name="listDivider" format="reference" />
+    </declare-styleable>
+</resources>

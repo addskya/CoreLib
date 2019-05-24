@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.journeyapps.barcodescanner.DecoratedBarcodeView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/barcode_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:zxing_framing_rect_height="@dimen/gap_size_200"
+    app:zxing_framing_rect_width="@dimen/gap_size_200"
+    app:zxing_preview_scaling_strategy="fitXY"
+    app:zxing_scanner_layout="@layout/stub_scanner"
+    app:zxing_use_texture_view="true"
+    tools:context=".pick.ScannerActivity" />

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Fragment  -->
+    <integer name="fragment_animation_duration">300</integer>
+    <integer name="input_max_length">30</integer>
+
+    <dimen name="button_radius">4dp</dimen>
+    <dimen name="dialog_radius">4dp</dimen>
+    <dimen name="input_radius">4dp</dimen>
+</resources>

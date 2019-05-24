@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.net.Uri" />
+
+        <variable
+            name="uri"
+            type="java.lang.String" />
+
+        <variable
+            name="view"
+            type="cn.orange.core.picture.PictureContract.View" />
+
+    </data>
+
+    <me.relex.photodraweeview.PhotoDraweeView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        app:OnViewTapListener="@{() -> view.viewPicture(uri)}"
+        app:actualImageScaleType="fitXY"
+        app:photoUri="@{Uri.parse(uri)}"
+        app:placeholderImage="@drawable/ic_loading" />
+
+</layout>

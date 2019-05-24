@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".pick.PickTextActivity">
+
+    <data>
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/gap_size_10"
+            android:background="@color/white"
+            android:gravity="start|top"
+            android:inputType="none"
+            android:lines="10"
+            android:maxLines="10"
+            android:minLines="10"
+            android:paddingStart="@dimen/gap_size_5"
+            android:paddingTop="@dimen/gap_size_3"
+            android:paddingEnd="@dimen/gap_size_5"
+            android:paddingBottom="@dimen/gap_size_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="autofillHints,hint"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:id="@+id/remain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/gap_size_5"
+            android:layout_marginBottom="@dimen/gap_size_5"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@id/area"
+            app:layout_constraintEnd_toEndOf="@id/area"
+            tools:text="10/50" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

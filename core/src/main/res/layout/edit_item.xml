@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/gap_size_10"
+    android:paddingEnd="@dimen/gap_size_1">
+
+    <!-- 选项标题,指定后无法修改 -->
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="@dimen/gap_size_100"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|top"
+        android:gravity="start|center_vertical"
+        android:minHeight="@dimen/gap_size_40"
+        android:text="@string/text_search"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_16"
+        tools:text="@string/text_search" />
+
+    <!-- 值,默认不能修改,配置后输入 -->
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        android:gravity="start|top"
+        android:hint="@string/text_history"
+        android:lines="3"
+        android:maxLines="3"
+        android:minLines="3"
+        android:paddingTop="@dimen/gap_size_10"
+        android:paddingBottom="@dimen/gap_size_10"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_15"
+        tools:text="Input \nText\nHere" />
+
+    <!-- 右箭头 -->
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="@dimen/gap_size_10"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_arrow"
+        android:visibility="gone"
+        tools:visibility="visible" />
+</LinearLayout>

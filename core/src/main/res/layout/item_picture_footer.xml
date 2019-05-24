@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="view"
+            type="cn.orange.core.picture.PictureContract.View" />
+    </data>
+
+    <cn.orange.core.ui.SimpleImageView
+        android:layout_width="@dimen/gap_size_90"
+        android:layout_height="@dimen/gap_size_90"
+        android:layout_marginStart="@dimen/gap_size_1"
+        android:layout_marginEnd="@dimen/gap_size_1"
+        android:background="@drawable/ic_picture"
+        android:onClick="@{() -> view.pickPicture()}"
+        android:padding="@dimen/gap_size_20"
+        app:placeholderImage="@drawable/ic_add" />
+</layout>

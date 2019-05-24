@@ -1,0 +1,55 @@
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="cn.orange.core">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+
+        <!-- QrScanActivity -->
+        <activity
+            android:name=".pick.ScannerActivity"
+            android:exported="false"
+            android:icon="@mipmap/ic_launcher"
+            android:launchMode="singleTask"
+            android:logo="@mipmap/ic_launcher"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <!-- 文本输入界面 -->
+        <activity
+            android:name=".pick.PickTextActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance"
+            android:logo="@mipmap/ic_launcher"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeActivity.NoActionBar"
+            android:windowSoftInputMode="adjustNothing|stateAlwaysVisible" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}"
+            android:enabled="true"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider" />
+
+        </provider>
+
+    </application>
+</manifest>

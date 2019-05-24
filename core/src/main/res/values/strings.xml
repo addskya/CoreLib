@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">core</string>
+
+    <string name="error_code_unknown">"出错了"</string>
+    <!-- Common -->
+    <string name="text_cancel">"Cancel"</string>
+    <string name="text_sure">"Sure"</string>
+    <string name="text_confirm">"Confirm"</string>
+    <string name="text_yes">"Yes"</string>
+    <string name="text_no">"No"</string>
+    <string name="text_query">"Query"</string>
+    <string name="text_name">"Name"</string>
+    <string name="text_mac">"Mac"</string>
+    <string name="text_back">"Back"</string>
+    <string name="text_search">"Search"</string>
+    <string name="text_history">"History"</string>
+    <string name="text_upload">"Upload"</string>
+    <string name="text_view">"View"</string>
+    <string name="text_logout">"Logout"</string>
+
+    <!-- ScannerActivity -->
+    <string name="text_scan_code">"请扫描二维码"</string>
+    <string name="text_flashlight">"手电筒"</string>
+    <string name="text_album">"相册"</string>
+    <string name="text_camera">"相机"</string>
+
+    <string name="resend">"resend"</string>
+    <string name="format_verify_code">"%1dS"</string>
+</resources>
