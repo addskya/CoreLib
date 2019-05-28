@@ -1,14 +1,16 @@
 package cn.orange.core;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.StrictMode;
+import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 /**
- * Created by ChengHe.Zhang on 2019/5/16
- * Email:chengheZhang@kaifa.cn
+ * Created by Orange on 2019/5/16
+ * Email:addskya@163.com
  */
 public class CoreApp extends Application {
     private static final String TAG = "CoreApp";
@@ -35,5 +37,11 @@ public class CoreApp extends Application {
                     .penaltyLog()
                     .build());
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(base);
     }
 }
