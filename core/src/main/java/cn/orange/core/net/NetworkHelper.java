@@ -1,7 +1,5 @@
 package cn.orange.core.net;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
 import retrofit2.Retrofit;
@@ -12,15 +10,14 @@ import retrofit2.Retrofit;
  * Email:addskya@163.com
  */
 public class NetworkHelper {
-
     @SuppressWarnings("unused")
-    private static final String TAG = "RetrofitManager";
-    private static final String URL = "http://10.32.233.253:9988";
-    private static final String KEY_NETWORK_ID = "current_network_id";
-    // 偷个懒
-    private static NetworkHelper sInstance;
+    private static final String TAG = "NetworkHelper";
+
     private Retrofit mRetrofit;
     private Retrofit mZipRetrofit;
+
+    // 偷个懒
+    private static NetworkHelper sInstance;
 
     private NetworkHelper() {
     }
@@ -30,13 +27,19 @@ public class NetworkHelper {
         return sInstance;
     }
 
-    public static void initialize(@NonNull Context context) {
-        sInstance = new NetworkHelper();
-        sInstance.setUp(context);
+    public static void initialize(@NonNull BaseEnvironment env) {
+        if (sInstance == null) {
+            sInstance = new NetworkHelper();
+        }
+        sInstance.createRetrofit(env);
     }
 
-    public void onEnvironmentChanged() {
-        String url = URL;
+    public void setEnvironment(@NonNull BaseEnvironment env) {
+        createRetrofit(env);
+    }
+
+    private void createRetrofit(@NonNull BaseEnvironment env) {
+        String url = env.getUrl();
         mRetrofit = RetrofitConfig.getRetrofit(url);
         mZipRetrofit = RetrofitConfig.getZipRetrofit(url);
     }
@@ -48,10 +51,5 @@ public class NetworkHelper {
 
     Retrofit getZipRetrofit() {
         return mZipRetrofit;
-    }
-
-    private void setUp(@NonNull Context context) {
-        SharedPreferences networkPref = context.getSharedPreferences("", Context.MODE_PRIVATE);
-        //networkPref.getInt();
     }
 }

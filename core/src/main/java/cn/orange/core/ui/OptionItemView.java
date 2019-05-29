@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,7 +23,7 @@ import cn.orange.core.R;
  * <p>
  * 文本展示的选项框
  */
-public class OptionItemView extends LinearLayout {
+public class OptionItemView extends FrameLayout {
 
     protected TextView mTextView;
     protected TextView mValueView;

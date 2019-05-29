@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/asterisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_asterisk"
+        android:textColor="@android:color/holo_red_light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="*" />
+
+    <!-- 选项标题,指定后无法修改 -->
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start|center_vertical"
+        android:text="@string/text_search"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_16"
+        app:layout_constraintBottom_toBottomOf="@id/asterisk"
+        app:layout_constraintStart_toEndOf="@id/asterisk"
+        app:layout_constraintTop_toTopOf="@id/asterisk"
+        tools:text="@string/text_search" />
+
+    <!-- 值,默认不能修改,配置后输入 -->
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/content"
+        style="@style/SingleLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="start|center_vertical"
+        android:hint="@string/text_history"
+        android:minHeight="@dimen/gap_size_30"
+        android:paddingStart="@dimen/gap_size_5"
+        android:paddingEnd="@dimen/gap_size_5"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text_size_15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text"
+        tools:text="InputTextHere" />
+
+    <ImageView
+        android:id="@+id/scan"
+        android:layout_width="@dimen/gap_size_20"
+        android:layout_height="@dimen/gap_size_20"
+        android:layout_marginEnd="@dimen/gap_size_10"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/content"
+        app:layout_constraintEnd_toEndOf="@id/content"
+        app:layout_constraintTop_toTopOf="@id/content" />
+
+</android.support.constraint.ConstraintLayout>

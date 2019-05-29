@@ -2,18 +2,39 @@
 <resources>
     <declare-styleable name="OptionItemView">
         <attr name="icon" />
-        <attr name="text" format="string|reference" />
-        <attr name="textColor" format="color|reference" />
-        <attr name="value" format="string|reference" />
-        <attr name="valueColor" format="color|reference" />
-        <attr name="hint" format="string|reference" />
+        <attr name="text" />
+        <attr name="textColor" />
+        <attr name="value" />
+        <attr name="valueColor" />
+        <attr name="hint" />
         <attr name="arrow" format="boolean|reference" />
     </declare-styleable>
 
+    <attr name="asterisk" format="boolean" />
+    <attr name="text" format="string|reference" />
+    <attr name="textColor" format="color|reference" />
+    <attr name="value" format="string|reference" />
+    <attr name="valueColor" format="color|reference" />
+    <attr name="hint" format="string|reference" />
     <attr name="icon" format="reference" />
+
 
     <declare-styleable name="ActionItemView">
         <attr name="icon" />
+    </declare-styleable>
+
+    <declare-styleable name="TextViewItem">
+        <attr name="asterisk" />
+        <attr name="text"  />
+        <attr name="textColor"  />
+        <attr name="value"  />
+        <attr name="valueColor"  />
+        <attr name="hint" />
+    </declare-styleable>
+
+    <declare-styleable name="EditTextItem" >
+        <!-- Whether or not support scan -->
+        <attr name="supportScan" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="PersistentView">

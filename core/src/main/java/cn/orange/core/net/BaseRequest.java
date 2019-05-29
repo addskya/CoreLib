@@ -31,7 +31,7 @@ public abstract class BaseRequest {
     protected BaseRequest() {
         mGson = new Gson();
 
-        RetrofitManager manager = RetrofitManager.get();
+        NetworkHelper manager = NetworkHelper.get();
         mApi = getClientRetrofit(manager).create(Api.class);
     }
 
@@ -54,7 +54,7 @@ public abstract class BaseRequest {
         return new HashMap<>(1);
     }
 
-    protected Retrofit getClientRetrofit(@NonNull RetrofitManager manager) {
+    protected Retrofit getClientRetrofit(@NonNull NetworkHelper manager) {
         return manager.getRetrofit();
     }
 
