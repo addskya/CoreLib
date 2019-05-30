@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
+    android:foreground="?attr/selectableItemBackground"
     android:orientation="horizontal"
     android:paddingStart="@dimen/gap_size_10"
     android:paddingTop="@dimen/gap_size_8"

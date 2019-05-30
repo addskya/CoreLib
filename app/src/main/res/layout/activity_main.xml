@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".MainActivity">
 
     <include
@@ -14,18 +15,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <cn.orange.core.ui.EditTextItem
-        android:id="@+id/textt"
+
+    <cn.orange.core.ui.TextViewItem
+        android:id="@+id/textitem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/gap_size_10"
+        android:layout_marginEnd="@dimen/gap_size_10"
         app:asterisk="true"
+        app:hint="hint input"
         app:layout_constraintTop_toBottomOf="@id/action_bar"
         app:text="Test"
         app:textColor="@color/black"
         app:value="123"
-        app:valueColor="@color/gray"
+        app:valueColor="@color/gray" />
+
+
+    <cn.orange.core.ui.EditTextItem
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/gap_size_10"
+        android:layout_marginEnd="@dimen/gap_size_10"
+        app:asterisk="true"
         app:hint="hint input"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textitem"
+        app:text="Test"
+        app:textColor="@color/black"
+        app:value="123"
+        app:valueColor="@color/gray" />
 
     <Button
         android:layout_width="wrap_content"

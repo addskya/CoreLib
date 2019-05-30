@@ -3,6 +3,7 @@ package cn.orange.core.ui;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -37,12 +38,11 @@ public class TextViewItem extends FrameLayout {
         super(context, attrs, defStyleAttr);
 
         View.inflate(context, getChildView(), this);
-
         mAsteriskView = findViewById(R.id.asterisk);
         mTextView = findViewById(R.id.text);
         mValueView = findViewById(R.id.content);
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TextViewItem);
 
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TextViewItem);
         setAsteriskVisible(a.getBoolean(R.styleable.TextViewItem_asterisk, false));
 
         setText(a.getString(R.styleable.TextViewItem_text));
@@ -53,12 +53,11 @@ public class TextViewItem extends FrameLayout {
         if (a.hasValue(R.styleable.TextViewItem_value)) {
             setValue(a.getString(R.styleable.TextViewItem_value));
         }
-        if (a.hasValue(R.styleable.TextViewItem_hint)) {
-            setHint(a.getString(R.styleable.TextViewItem_hint));
-        }
-
         if (a.hasValue(R.styleable.TextViewItem_valueColor)) {
             setValueColor(a.getColorStateList(R.styleable.TextViewItem_valueColor));
+        }
+        if (a.hasValue(R.styleable.TextViewItem_hint)) {
+            setHint(a.getString(R.styleable.TextViewItem_hint));
         }
 
         a.recycle();
@@ -69,7 +68,6 @@ public class TextViewItem extends FrameLayout {
             mAsteriskView.setVisibility(visible ? VISIBLE : INVISIBLE);
         }
     }
-
 
     public final void setText(@Nullable CharSequence text) {
         if (mTextView != null) {
@@ -99,13 +97,13 @@ public class TextViewItem extends FrameLayout {
         }
     }
 
-
     public final void setHint(@Nullable CharSequence hint) {
         if (mValueView != null) {
             mValueView.setHint(hint);
         }
     }
 
+    @LayoutRes
     protected int getChildView() {
         return R.layout.textview_item;
     }
