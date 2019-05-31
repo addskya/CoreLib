@@ -271,11 +271,26 @@ public abstract class SimpleAdapter<D, V> extends android.widget.BaseAdapter {
         return convertView;
     }
 
+    /**
+     * create the list view holder
+     *
+     * @param inflater layout inflater
+     * @param parent   view parent maybe null
+     * @param viewType the item view type {@link #getItemViewType(int)} ()}
+     * @return the list view holder
+     */
     protected abstract ViewHolder newHolder(
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup parent,
             int viewType);
 
+    /**
+     * bind data into view
+     *
+     * @param holder view holder
+     * @param data   the data at position
+     * @param view   the View Contract
+     */
     protected abstract void bindViewHolder(
             @NonNull ViewHolder holder,
             @Nullable D data,
@@ -286,11 +301,7 @@ public abstract class SimpleAdapter<D, V> extends android.widget.BaseAdapter {
         protected final View itemView;
 
         public ViewHolder(@NonNull View itemView) {
-            if (itemView == null) {
-                throw new IllegalArgumentException("itemView may not be null");
-            } else {
-                this.itemView = itemView;
-            }
+            this.itemView = itemView;
         }
 
         public View getRoot() {

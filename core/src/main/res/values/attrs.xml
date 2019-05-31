@@ -38,6 +38,10 @@
         <attr name="scannable" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="SpinnerItem" >
+        <attr name="adapter" format="string" />
+    </declare-styleable>
+
     <declare-styleable name="PersistentView">
         <attr name="persistentKey" format="string|reference" />
     </declare-styleable>

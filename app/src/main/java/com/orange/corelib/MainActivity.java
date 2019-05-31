@@ -8,6 +8,7 @@ import android.view.View;
 import com.orange.corelib.databinding.ActivityMainBinding;
 
 import cn.orange.core.LocationActivity;
+import cn.orange.core.ui.SpinnerItem;
 import cn.orange.core.util.LogUtil;
 
 public class MainActivity extends LocationActivity {
@@ -21,6 +22,16 @@ public class MainActivity extends LocationActivity {
                 this, R.layout.activity_main);
         binding.setHost(this);
         LogUtil.i(TAG, "onCreate");
+
+        CountryAdapter adapter = new CountryAdapter(getLayoutInflater(), this);
+        for(int i = 0 ; i <= 10 ; i++){
+            adapter.add(new Country("Name:" + i));
+        }
+
+        SpinnerItem item = binding.spinnerView;
+        item.setAdapter(adapter, (item1) -> {
+            LogUtil.i(TAG, "item:" + item1.getName());
+        });
     }
 
     public void onClick(View v) {
@@ -38,5 +49,9 @@ public class MainActivity extends LocationActivity {
     @Override
     protected void onLocationChanged(Location location) {
         LogUtil.i(TAG, "onLocationChanged:" + location);
+    }
+
+    public void onItemSelected() {
+
     }
 }

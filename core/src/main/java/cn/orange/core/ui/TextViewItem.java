@@ -70,8 +70,7 @@ public class TextViewItem extends FrameLayout {
         a.recycle();
 
         a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.inputType});
-        int inputType = a.getInt(0, EditorInfo.TYPE_NULL);
-        mValueView.setInputType(inputType);
+        setInputType(a.getInt(0, EditorInfo.TYPE_NULL));
         a.recycle();
     }
 
@@ -118,6 +117,12 @@ public class TextViewItem extends FrameLayout {
     public final void setValueBackground(Drawable background) {
         if (mValueView != null) {
             mValueView.setBackground(background);
+        }
+    }
+
+    public final void setInputType(int inputType) {
+        if (mValueView != null) {
+            mValueView.setInputType(inputType);
         }
     }
 

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingStart="@dimen/gap_size_10"
+    android:paddingTop="@dimen/gap_size_5"
+    android:paddingEnd="@dimen/gap_size_10"
+    android:paddingBottom="@dimen/gap_size_5"
+    tools:background="@android:color/white">
+
+    <!-- 星号 -->
+    <TextView
+        android:id="@+id/asterisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_asterisk"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="@dimen/text_size_18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/text_asterisk"
+        tools:visibility="visible" />
+
+    <!-- 选项标题,指定后无法修改 -->
+    <TextView
+        android:id="@+id/text"
+        style="@style/SingleLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start|center_vertical"
+        android:text="@string/app_name"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_18"
+        app:layout_constraintStart_toEndOf="@id/asterisk"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/app_name" />
+
+    <!-- 值,默认不能修改,配置后输入 -->
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/gap_size_5"
+        android:minHeight="@dimen/gap_size_40"
+        android:paddingStart="@dimen/gap_size_5"
+        android:paddingTop="@dimen/gap_size_10"
+        android:paddingEnd="@dimen/gap_size_5"
+        android:paddingBottom="@dimen/gap_size_10"
+        android:spinnerMode="dropdown"
+        tools:listitem="@layout/item_tabbed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text"  />
+
+</android.support.constraint.ConstraintLayout>

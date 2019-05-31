@@ -26,90 +26,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <cn.orange.core.ui.TextViewItem
-            android:id="@+id/tr"
+        <cn.orange.core.ui.SpinnerItem
+            android:id="@+id/spinnerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:asterisk="true"
             app:layout_constraintTop_toBottomOf="@id/action_bar"
-            app:text="TR"
-            app:value="xian123"
-            app:valueBackground="@null" />
-
-        <cn.orange.core.ui.EditTextItem
-            android:id="@+id/feeder"
-            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/gap_size_1"
-            android:inputType="numberDecimal"
-            android:nextFocusDown="@+id/pole"
-            android:nextFocusForward="@id/pole"
-            app:layout_constraintEnd_toStartOf="@id/pole"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tr"
-            app:scannable="false"
-            app:text="Feeder"
-            app:value="1" />
-
-        <cn.orange.core.ui.EditTextItem
-            android:id="@+id/pole"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:nextFocusDown="@+id/PLAN"
-            android:paddingStart="0dp"
-            android:paddingEnd="0dp"
-            app:layout_constraintBottom_toBottomOf="@id/feeder"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/feeder"
-            app:layout_constraintTop_toTopOf="@id/feeder"
-            app:scannable="false"
-            app:text="Pole"
-            app:value="1" />
-
-        <cn.orange.core.ui.TextViewItem
-            android:id="@+id/PLAN"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/gap_size_1"
-            app:layout_constraintTop_toBottomOf="@+id/feeder"
-            app:text="TR"
-            app:value="xian123" />
-
-        <cn.orange.core.ui.EditAreaItem
-            android:id="@+id/address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/gap_size_1"
-            android:inputType="textMultiLine"
-            app:layout_constraintTop_toBottomOf="@+id/PLAN"
-            app:text="Installation Address"
-            app:value="xian123" />
-
-        <cn.orange.core.ui.EditTextItem
-            android:id="@+id/meter_no"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/gap_size_1"
-            android:inputType="text"
-            app:asterisk="true"
-            app:layout_constraintTop_toBottomOf="@+id/address"
-            app:onScannerListener="@{() -> host.onClick()}"
-            app:scannable="true"
-            app:text="Meter No"
-            app:value="xian123" />
-
-        <cn.orange.core.ui.EditTextItem
-            android:id="@+id/reading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/gap_size_1"
-            android:inputType="numberDecimal"
-            app:asterisk="false"
-            app:layout_constraintTop_toBottomOf="@+id/meter_no"
-            app:scannable="false"
-            app:text="Meter Reading"
-            app:value="0" />
+            app:text="Text1111"
+            app:asterisk="true"/>
 
     </android.support.constraint.ConstraintLayout>
 </layout>
