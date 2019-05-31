@@ -30,11 +30,12 @@
         <attr name="value"  />
         <attr name="valueColor"  />
         <attr name="hint" />
+        <attr name="valueBackground" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="EditTextItem" >
         <!-- Whether or not support scan -->
-        <attr name="supportScan" format="boolean" />
+        <attr name="scannable" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="PersistentView">

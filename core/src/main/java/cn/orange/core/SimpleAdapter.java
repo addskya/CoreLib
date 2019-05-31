@@ -2,22 +2,23 @@ package cn.orange.core;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
- * Created by Orange on 2019/4/1.
+ * Created by Orange on 2019/5/31
  * Email:addskya@163.com
+ * <p>
+ * 提供给ListView,GridView,Spinner等Container的数据容器
  */
 @SuppressWarnings("all")
-public abstract class BaseAdapter<D, V> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-    @SuppressWarnings("unused")
-    private static final String TAG = "BaseAdapter";
+public abstract class SimpleAdapter<D, V> extends android.widget.BaseAdapter {
+    private static final String TAG = "SimpleAdapter";
 
     private final ArrayList<D> mData;
     private final LayoutInflater mInflater;
@@ -25,8 +26,8 @@ public abstract class BaseAdapter<D, V> extends RecyclerView.Adapter<RecyclerVie
     private boolean mAllowRepeated;
     private boolean mInsertToHead;
 
-    protected BaseAdapter(@NonNull LayoutInflater inflater,
-                          @Nullable V view) {
+    protected SimpleAdapter(@NonNull LayoutInflater inflater,
+                            @Nullable V view) {
         mInflater = inflater;
         mView = view;
         mData = new ArrayList<>();
@@ -40,7 +41,6 @@ public abstract class BaseAdapter<D, V> extends RecyclerView.Adapter<RecyclerVie
      */
     public void add(@Nullable D data) {
         addWithNotify(data, true);
-        onDataChanged();
     }
 
     public void add(@Nullable D[] data) {
@@ -50,30 +50,19 @@ public abstract class BaseAdapter<D, V> extends RecyclerView.Adapter<RecyclerVie
         for (D d : data) {
             addWithNotify(d, false);
         }
-        notifyDataChanged();
+        notifyDataSetChanged();
     }
 
-    /**
-     * Insert new Data list into Adapter
-     *
-     * @param list the new data list
-     */
-    public void add(@Nullable List<D> list) {
+    public void add(@Nullable Collection<D> list) {
         if (list == null || list.isEmpty()) {
             return;
         }
         for (D data : list) {
             addWithNotify(data, false);
         }
-        notifyDataChanged();
+        notifyDataSetChanged();
     }
 
-    /**
-     * Insert new Data into Adapter
-     *
-     * @param data   the data
-     * @param notify whether or not notify update
-     */
     private void addWithNotify(@Nullable D data, boolean notify) {
         if (data == null) {
             return;
@@ -87,8 +76,7 @@ public abstract class BaseAdapter<D, V> extends RecyclerView.Adapter<RecyclerVie
             return;
         }
         if (notify) {
-            insertIndex += getHeaderCount();
-            notifyItemInserted(insertIndex);
+            notifyDataSetChanged();
         }
     }
 
@@ -113,7 +101,7 @@ public abstract class BaseAdapter<D, V> extends RecyclerView.Adapter<RecyclerVie
         }
         index = Math.max(0, Math.min(index, mData.size()));
         mData.add(index, data);
-        notifyItemInserted(index);
+        notifyDataSetChanged();
     }
 
     /**
@@ -137,17 +125,12 @@ public abstract class BaseAdapter<D, V> extends RecyclerView.Adapter<RecyclerVie
         if (data == null) {
             return true;
         }
-        int position = mData.indexOf(data);
-        if (position == -1) {
-            return true;
+
+        boolean result = mData.remove(data);
+        if (notify) {
+            notifyDataSetChanged();
         }
-        position += getHeaderCount();
-        boolean removed = mData.remove(data);
-        if (removed && notify) {
-            notifyItemRemoved(position);
-        }
-        onDataChanged();
-        return removed;
+        return result;
     }
 
     /**
@@ -156,7 +139,7 @@ public abstract class BaseAdapter<D, V> extends RecyclerView.Adapter<RecyclerVie
      * @param list the Remove data list
      * @return whether or not success
      */
-    public boolean remove(@Nullable List<D> list) {
+    public boolean remove(@Nullable Collection<D> list) {
         if (list == null || list.isEmpty()) {
             return true;
         }
@@ -164,7 +147,7 @@ public abstract class BaseAdapter<D, V> extends RecyclerView.Adapter<RecyclerVie
         for (D data : list) {
             removed = removeWithChanged(data, false) || removed;
         }
-        notifyDataChanged();
+        notifyDataSetChanged();
         return removed;
     }
 
@@ -173,8 +156,9 @@ public abstract class BaseAdapter<D, V> extends RecyclerView.Adapter<RecyclerVie
      */
     public void clear() {
         mData.clear();
-        notifyDataChanged();
+        notifyDataSetChanged();
     }
+
 
     /**
      * Replace the data
@@ -185,7 +169,7 @@ public abstract class BaseAdapter<D, V> extends RecyclerView.Adapter<RecyclerVie
         int index = mData.indexOf(data);
         if (index != -1) {
             mData.set(index, data);
-            notifyItemChanged(index + getHeaderCount());
+            notifyDataSetChanged();
         }
     }
 
@@ -257,93 +241,60 @@ public abstract class BaseAdapter<D, V> extends RecyclerView.Adapter<RecyclerVie
     }
 
     @Override
-    public final RecyclerView.ViewHolder onCreateViewHolder(
-            @Nullable ViewGroup parent,
-            int viewType) {
-        return newHolder(mInflater, parent, viewType);
+    public final int getCount() {
+        return getAll().size();
     }
 
-    /**
-     * create the ItemView Holder for this
-     *
-     * @param inflater the layout inflater
-     * @param parent   the parent viewGroup
-     * @param viewType the item viewType
-     * @return the item ViewHolder
-     */
-    @NonNull
-    protected abstract RecyclerView.ViewHolder newHolder(
+    @Override
+    public final D getItem(int position) {
+        return getAll().get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public final View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
+        if (convertView == null) {
+            holder = newHolder(mInflater, parent, getItemViewType(position));
+            convertView = holder.getRoot();
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        final D data = getItem(position);
+        bindViewHolder(holder, data, mView);
+        return convertView;
+    }
+
+    protected abstract ViewHolder newHolder(
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup parent,
             int viewType);
 
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        D data;
-        final int headerCount = getHeaderCount();
-        final int dataSize = getAll().size();
-        final int footerCount = getFooterCount();
-
-        if (position < headerCount) {
-            data = null;
-        } else if (position >= headerCount && position <= headerCount + dataSize - 1) {
-            int dataIndex = position - headerCount;
-            data = getAll().get(dataIndex);
-        } else {
-            data = null;
-        }
-        bindViewHolder(holder, data, mView);
-    }
-
     protected abstract void bindViewHolder(
-            @NonNull RecyclerView.ViewHolder holder,
+            @NonNull ViewHolder holder,
             @Nullable D data,
             @Nullable V view);
 
-    @Override
-    public int getItemCount() {
-        return getDataCount() + getHeaderCount() + getFooterCount();
-    }
+    public static abstract class ViewHolder {
+        @NonNull
+        protected final View itemView;
 
-    /**
-     * How many Header in AdapterView
-     *
-     * @return the header count in RecyclerView
-     */
-    public int getHeaderCount() {
-        return 0;
-    }
+        public ViewHolder(@NonNull View itemView) {
+            if (itemView == null) {
+                throw new IllegalArgumentException("itemView may not be null");
+            } else {
+                this.itemView = itemView;
+            }
+        }
 
-    /**
-     * How many Data Item in AdapterView
-     *
-     * @return the data list size
-     */
-    public final int getDataCount() {
-        return getAll().size();
-    }
-
-    /**
-     * How many Footer in AdapterView
-     *
-     * @return the footer count in RecyclerView
-     */
-    protected int getFooterCount() {
-        return 0;
-    }
-
-    /**
-     * Hook Api,Call Back when the list Changed
-     */
-    protected void onDataChanged() {
-
-    }
-
-    /**
-     * Send Notify when data list Changed
-     */
-    public final void notifyDataChanged() {
-        notifyDataSetChanged();
-        onDataChanged();
+        public View getRoot() {
+            return itemView;
+        }
     }
 }

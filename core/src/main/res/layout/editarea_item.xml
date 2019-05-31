@@ -23,7 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/text_asterisk"
-        tools:visibility="gone" />
+        tools:visibility="visible" />
 
     <!-- 选项标题,指定后无法修改 -->
     <TextView
@@ -42,35 +42,38 @@
     <!-- 值,默认不能修改,配置后输入 -->
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/content"
-        style="@style/SingleLine"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/gap_size_5"
         android:background="@drawable/ic_edit_text"
-        android:gravity="start|center_vertical"
+        android:gravity="start|top"
         android:hint="@string/text_history"
+        android:lines="2"
+        android:maxLines="2"
+        android:minLines="2"
         android:paddingStart="@dimen/gap_size_5"
         android:paddingTop="@dimen/gap_size_10"
         android:paddingEnd="@dimen/gap_size_5"
         android:paddingBottom="@dimen/gap_size_10"
         android:textColor="@android:color/black"
-        android:textColorHint="@color/gray"
         android:textSize="@dimen/text_size_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text"
-        tools:text="InputTextHere" />
+        tools:text="Input\nText\nHere" />
 
-    <Button
+    <ImageView
         android:id="@+id/scanner"
         android:layout_width="@dimen/gap_size_30"
         android:layout_height="@dimen/gap_size_30"
         android:layout_marginEnd="@dimen/gap_size_10"
         android:contentDescription="@null"
-        android:background="@drawable/ic_scan"
+        android:src="@drawable/ic_scan"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/content"
         app:layout_constraintEnd_toEndOf="@id/content"
-        app:layout_constraintTop_toTopOf="@id/content" />
+        app:layout_constraintTop_toTopOf="@id/content"
+        tools:visibility="visible" />
 
 </android.support.constraint.ConstraintLayout>

@@ -3,11 +3,13 @@ package cn.orange.core.ui;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -19,7 +21,7 @@ import cn.orange.core.R;
  */
 public class TextViewItem extends FrameLayout {
 
-    protected TextView mAsteriskView;
+    protected View mAsteriskView;
     protected TextView mTextView;
     protected TextView mValueView;
 
@@ -38,6 +40,7 @@ public class TextViewItem extends FrameLayout {
         super(context, attrs, defStyleAttr);
 
         View.inflate(context, getChildView(), this);
+
         mAsteriskView = findViewById(R.id.asterisk);
         mTextView = findViewById(R.id.text);
         mValueView = findViewById(R.id.content);
@@ -60,12 +63,21 @@ public class TextViewItem extends FrameLayout {
             setHint(a.getString(R.styleable.TextViewItem_hint));
         }
 
+        if (a.hasValue(R.styleable.TextViewItem_valueBackground)) {
+            setValueBackground(a.getDrawable(R.styleable.TextViewItem_valueBackground));
+        }
+
+        a.recycle();
+
+        a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.inputType});
+        int inputType = a.getInt(0, EditorInfo.TYPE_NULL);
+        mValueView.setInputType(inputType);
         a.recycle();
     }
 
     public final void setAsteriskVisible(boolean visible) {
         if (mAsteriskView != null) {
-            mAsteriskView.setVisibility(visible ? VISIBLE : INVISIBLE);
+            mAsteriskView.setVisibility(visible ? VISIBLE : GONE);
         }
     }
 
@@ -100,6 +112,12 @@ public class TextViewItem extends FrameLayout {
     public final void setHint(@Nullable CharSequence hint) {
         if (mValueView != null) {
             mValueView.setHint(hint);
+        }
+    }
+
+    public final void setValueBackground(Drawable background) {
+        if (mValueView != null) {
+            mValueView.setBackground(background);
         }
     }
 

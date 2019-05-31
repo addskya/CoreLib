@@ -6,25 +6,26 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.widget.ImageView;
+import android.view.View;
 
 import cn.orange.core.R;
+
 
 /**
  * Created by ChengHe.Zhang on 2019/5/28
  * Email:chengheZhang@kaifa.cn
  */
 public class EditTextItem extends TextViewItem {
-
-    private ImageView mScanView;
+    private static final String TAG = "EditTextItem";
+    private View mScannerView;
 
     public EditTextItem(@NonNull Context context) {
-        super(context);
+        this(context, null);
     }
 
     public EditTextItem(@NonNull Context context,
                         @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public EditTextItem(@NonNull Context context,
@@ -32,10 +33,10 @@ public class EditTextItem extends TextViewItem {
                         int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        mScanView = findViewById(R.id.scan);
+        mScannerView = findViewById(R.id.scanner);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.EditTextItem);
-        setSupportScan(a.getBoolean(R.styleable.EditTextItem_supportScan, false));
+        setScannable(a.getBoolean(R.styleable.EditTextItem_scannable, false));
         a.recycle();
     }
 
@@ -45,18 +46,15 @@ public class EditTextItem extends TextViewItem {
         return R.layout.edittext_item;
     }
 
-    public final void setSupportScan(boolean supportScan) {
-        if (isInEditMode()) {
-            return;
-        }
-        if (mScanView != null) {
-            mScanView.setVisibility(supportScan ? VISIBLE : GONE);
+    public final void setScannable(boolean scannable) {
+        if (mScannerView != null) {
+            mScannerView.setVisibility(scannable ? VISIBLE : GONE);
         }
     }
 
-    public final void setScanAction(OnClickListener listener) {
-        if (mScanView != null) {
-            mScanView.setOnClickListener(listener);
+    public final void setOnScannerListener(@Nullable OnScannerListener listener) {
+        if (mScannerView != null) {
+            mScannerView.setOnClickListener(listener);
         }
     }
 }
