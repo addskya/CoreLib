@@ -1,7 +1,6 @@
 package cn.orange.core.ui;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -30,18 +29,16 @@ public final class PictureItem extends ViewItem {
     public PictureItem(@NonNull Context context,
                        @Nullable AttributeSet attrs,
                        int defStyleAttr) {
-        this(context, attrs, defStyleAttr, R.layout.picture_item);
-    }
-
-    public PictureItem(@NonNull Context context,
-                       @Nullable AttributeSet attrs,
-                       int defStyleAttr,
-                       @LayoutRes int layout) {
-        super(context, attrs, defStyleAttr, layout);
+        super(context, attrs, defStyleAttr);
         mRecyclerView = findViewById(R.id.list);
     }
 
-    /*public final <D, V> void setAdapter(BaseAdapter<D, V> adapter) {
+    public final <D, V> void setAdapter(BaseAdapter<D, V> adapter) {
         mRecyclerView.setAdapter(adapter);
-    }*/
+    }
+
+    @Override
+    protected int getChildView() {
+        return R.layout.picture_item;
+    }
 }

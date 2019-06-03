@@ -25,13 +25,11 @@ public class EditAreaItem extends EditTextItem {
     public EditAreaItem(@NonNull Context context,
                         @Nullable AttributeSet attrs,
                         int defStyleAttr) {
-        this(context, attrs, defStyleAttr, R.layout.editarea_item);
+        super(context, attrs, defStyleAttr);
     }
 
-    public EditAreaItem(@NonNull Context context,
-                        @Nullable AttributeSet attrs,
-                        int defStyleAttr,
-                        int layout) {
-        super(context, attrs, defStyleAttr, layout);
+    @Override
+    protected int getChildView() {
+        return R.layout.editarea_item;
     }
 }

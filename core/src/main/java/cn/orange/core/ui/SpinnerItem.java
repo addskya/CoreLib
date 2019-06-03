@@ -32,7 +32,7 @@ public final class SpinnerItem extends ViewItem {
     public SpinnerItem(@NonNull Context context,
                        @Nullable AttributeSet attrs,
                        int defStyleAttr) {
-        super(context, attrs, defStyleAttr, R.layout.spinner_item);
+        super(context, attrs, defStyleAttr);
 
         mSpinner = findViewById(R.id.spinner);
     }
@@ -49,5 +49,10 @@ public final class SpinnerItem extends ViewItem {
                 }
             });
         }
+    }
+
+    @Override
+    protected int getChildView() {
+        return R.layout.spinner_item;
     }
 }

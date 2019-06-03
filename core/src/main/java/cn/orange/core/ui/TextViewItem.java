@@ -32,14 +32,8 @@ public class TextViewItem extends ViewItem {
     public TextViewItem(@NonNull Context context,
                         @Nullable AttributeSet attrs,
                         int defStyleAttr) {
-        this(context, attrs, defStyleAttr, R.layout.textview_item);
-    }
+        super(context, attrs, defStyleAttr);
 
-    public TextViewItem(@NonNull Context context,
-                        @Nullable AttributeSet attrs,
-                        int defStyleAttr,
-                        @LayoutRes int layout) {
-        super(context, attrs, defStyleAttr, layout);
         mValueView = findViewById(R.id.content);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TextViewItem);
@@ -87,5 +81,10 @@ public class TextViewItem extends ViewItem {
         if (mValueView != null) {
             mValueView.setBackground(background);
         }
+    }
+
+    @Override
+    protected int getChildView() {
+        return R.layout.textview_item;
     }
 }

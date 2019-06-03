@@ -2,7 +2,6 @@ package cn.orange.core.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -32,14 +31,7 @@ public class EditTextItem extends TextViewItem {
     public EditTextItem(@NonNull Context context,
                         @Nullable AttributeSet attrs,
                         int defStyleAttr) {
-        this(context, attrs, defStyleAttr, R.layout.edittext_item);
-    }
-
-    public EditTextItem(@NonNull Context context,
-                        @Nullable AttributeSet attrs,
-                        int defStyleAttr,
-                        @LayoutRes int layout) {
-        super(context, attrs, defStyleAttr, layout);
+        super(context, attrs, defStyleAttr);
         mScannerView = findViewById(R.id.scanner);
 
         TypedArray a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.inputType});
@@ -67,5 +59,10 @@ public class EditTextItem extends TextViewItem {
         if (mScannerView != null) {
             mScannerView.setOnClickListener(listener);
         }
+    }
+
+    @Override
+    protected int getChildView() {
+        return R.layout.edittext_item;
     }
 }

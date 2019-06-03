@@ -17,19 +17,26 @@ import cn.orange.core.R;
  * Created by Orange on 2019/6/3
  * Email:addskya@163.com
  */
-public abstract class ViewItem extends FrameLayout {
+public class ViewItem extends FrameLayout {
 
     protected final View mAsteriskView;
     protected final TextView mTextView;
 
+    public ViewItem(@NonNull Context context) {
+        this(context, null);
+    }
+
+    public ViewItem(@NonNull Context context,
+                    @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
     public ViewItem(@NonNull Context context,
                     @Nullable AttributeSet attrs,
-                    int defStyleAttr,
-                    @LayoutRes int layout) {
+                    int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        View.inflate(context, layout, this);
-
+        View.inflate(context, getChildView(), this);
         mAsteriskView = findViewById(R.id.asterisk);
         mTextView = findViewById(R.id.text);
 
@@ -43,7 +50,6 @@ public abstract class ViewItem extends FrameLayout {
 
         a.recycle();
     }
-
 
     public final void setAsteriskVisible(boolean visible) {
         if (mAsteriskView != null) {
@@ -61,5 +67,10 @@ public abstract class ViewItem extends FrameLayout {
         if (mTextView != null && color != null) {
             mTextView.setTextColor(color);
         }
+    }
+
+    @LayoutRes
+    protected int getChildView() {
+        return R.layout.textview_item;
     }
 }
