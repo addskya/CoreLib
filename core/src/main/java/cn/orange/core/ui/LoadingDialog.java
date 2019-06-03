@@ -29,8 +29,7 @@ public class LoadingDialog extends BaseDialog {
     @Override
     protected View onCreateView(@NonNull LayoutInflater inflater,
                                 @Nullable ViewGroup parent) {
-        return inflater.inflate(R.layout.dialog_loading,
-                parent, false);
+        return inflater.inflate(R.layout.dialog_loading, parent, false);
     }
 
     @Override

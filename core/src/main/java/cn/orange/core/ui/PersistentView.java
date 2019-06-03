@@ -25,13 +25,12 @@ public class PersistentView extends AppCompatEditText {
     private String mPersistentKey;
 
     public PersistentView(@NonNull Context context) {
-        super(context);
+        this(context, null);
     }
 
     public PersistentView(@NonNull Context context,
                           @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        initAttributeSet(context, attrs);
+        this(context, attrs, 0);
     }
 
     public PersistentView(@NonNull Context context,
@@ -75,6 +74,9 @@ public class PersistentView extends AppCompatEditText {
     }
 
     private void readPersistentText() {
+        if (TextUtils.isEmpty(mPersistentKey)) {
+            return;
+        }
         @Nullable String persistentText = mSharePreference.getString(mPersistentKey, null);
         setText(persistentText);
         Editable text = getText();

@@ -40,21 +40,21 @@
         tools:text="@string/app_name" />
 
     <!-- 值,默认不能修改,配置后输入 -->
-    <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/spinner"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/gap_size_5"
-        android:minHeight="@dimen/gap_size_40"
+        android:orientation="horizontal"
         android:paddingStart="@dimen/gap_size_5"
-        android:paddingTop="@dimen/gap_size_2"
         android:paddingEnd="@dimen/gap_size_5"
-        android:paddingBottom="@dimen/gap_size_2"
         android:spinnerMode="dropdown"
-        tools:listitem="@layout/item_tabbed"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text"  />
+        app:layout_constraintTop_toBottomOf="@+id/text"
+        app:stackFromEnd="false"
+        tools:listitem="@layout/item_tabbed" />
 
 </android.support.constraint.ConstraintLayout>

@@ -58,6 +58,7 @@ public class ConfirmDialog extends BaseDialog {
 
         TextView messageView = view.findViewById(R.id.message);
         messageView.setText(mMessage);
+
         View sureView = view.findViewById(R.id.POSITIVE);
         sureView.setOnClickListener((v) -> notifyButtonClick(BUTTON_POSITIVE));
 

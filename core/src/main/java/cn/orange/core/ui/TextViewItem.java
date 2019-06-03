@@ -8,22 +8,17 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import cn.orange.core.R;
 
 /**
- * Created by ChengHe.Zhang on 2019/5/28
- * Email:chengheZhang@kaifa.cn
+ * Created by Orange on 2019/5/28
+ * Email:addskya@163.com
  */
-public class TextViewItem extends FrameLayout {
+public class TextViewItem extends ViewItem {
 
-    protected View mAsteriskView;
-    protected TextView mTextView;
-    protected TextView mValueView;
+    protected final TextView mValueView;
 
     public TextViewItem(@NonNull Context context) {
         this(context, null);
@@ -39,19 +34,9 @@ public class TextViewItem extends FrameLayout {
                         int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        View.inflate(context, getChildView(), this);
-
-        mAsteriskView = findViewById(R.id.asterisk);
-        mTextView = findViewById(R.id.text);
         mValueView = findViewById(R.id.content);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TextViewItem);
-        setAsteriskVisible(a.getBoolean(R.styleable.TextViewItem_asterisk, false));
-
-        setText(a.getString(R.styleable.TextViewItem_text));
-        if (a.hasValue(R.styleable.TextViewItem_textColor)) {
-            setTextColor(a.getColorStateList(R.styleable.TextViewItem_textColor));
-        }
 
         if (a.hasValue(R.styleable.TextViewItem_value)) {
             setValue(a.getString(R.styleable.TextViewItem_value));
@@ -68,28 +53,6 @@ public class TextViewItem extends FrameLayout {
         }
 
         a.recycle();
-
-        a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.inputType});
-        setInputType(a.getInt(0, EditorInfo.TYPE_NULL));
-        a.recycle();
-    }
-
-    public final void setAsteriskVisible(boolean visible) {
-        if (mAsteriskView != null) {
-            mAsteriskView.setVisibility(visible ? VISIBLE : GONE);
-        }
-    }
-
-    public final void setText(@Nullable CharSequence text) {
-        if (mTextView != null) {
-            mTextView.setText(text);
-        }
-    }
-
-    public final void setTextColor(ColorStateList color) {
-        if (mTextView != null && color != null) {
-            mTextView.setTextColor(color);
-        }
     }
 
     public final void setValue(@Nullable CharSequence value) {
@@ -120,13 +83,8 @@ public class TextViewItem extends FrameLayout {
         }
     }
 
-    public final void setInputType(int inputType) {
-        if (mValueView != null) {
-            mValueView.setInputType(inputType);
-        }
-    }
-
     @LayoutRes
+    @Override
     protected int getChildView() {
         return R.layout.textview_item;
     }

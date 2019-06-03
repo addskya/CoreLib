@@ -17,7 +17,6 @@ import cn.orange.core.R;
  */
 public class RecyclerView extends android.support.v7.widget.RecyclerView {
 
-
     public RecyclerView(@NonNull Context context) {
         super(context);
     }

@@ -23,12 +23,13 @@
         android:layout_height="wrap_content"
         android:ellipsize="marquee"
         android:foreground="?attr/selectableItemBackground"
-        android:gravity="center"
-        android:minHeight="@dimen/gap_size_50"
+        android:gravity="start|center_vertical"
+        android:paddingTop="@dimen/gap_size_10"
+        android:paddingBottom="@dimen/gap_size_10"
         android:singleLine="true"
         android:text="@{data.name}"
         android:textAlignment="inherit"
         android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/text_size_20"
+        android:textSize="@dimen/text_size_18"
         tools:text="123456" />
 </layout>

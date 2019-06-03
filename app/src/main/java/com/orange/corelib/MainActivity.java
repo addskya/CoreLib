@@ -24,14 +24,12 @@ public class MainActivity extends LocationActivity {
         LogUtil.i(TAG, "onCreate");
 
         CountryAdapter adapter = new CountryAdapter(getLayoutInflater(), this);
-        for(int i = 0 ; i <= 10 ; i++){
+        for (int i = 0; i <= 10; i++) {
             adapter.add(new Country("Name:" + i));
         }
 
         SpinnerItem item = binding.spinnerView;
-        item.setAdapter(adapter, (item1) -> {
-            LogUtil.i(TAG, "item:" + item1.getName());
-        });
+        item.setAdapter(adapter, (item1) -> LogUtil.i(TAG, "item:" + item1.getName()));
     }
 
     public void onClick(View v) {

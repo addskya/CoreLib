@@ -4,8 +4,8 @@ import android.view.View;
 import android.widget.AdapterView;
 
 /**
- * Created by ChengHe.Zhang on 2019/4/30
- * Email:chengheZhang@kaifa.cn
+ * Created by Orange on 2019/6/3
+ * Email:addskya@163.com
  */
 public class DefaultOnItemSelectedListener implements AdapterView.OnItemSelectedListener {
     @Override

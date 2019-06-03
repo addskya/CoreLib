@@ -17,12 +17,12 @@ import cn.orange.core.R;
 public class EditItemView extends OptionItemView {
 
     public EditItemView(@NonNull Context context) {
-        super(context);
+        this(context, null);
     }
 
     public EditItemView(@NonNull Context context,
                         @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public EditItemView(@NonNull Context context,

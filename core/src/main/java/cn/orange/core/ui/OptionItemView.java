@@ -11,7 +11,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import cn.orange.core.R;
@@ -64,13 +63,6 @@ public class OptionItemView extends FrameLayout {
 
         setArrowVisible(a.getBoolean(R.styleable.OptionItemView_arrow, true));
         a.recycle();
-    }
-
-    public static void setValue(@NonNull View view,
-                                @Nullable CharSequence value) {
-        if (view instanceof OptionItemView) {
-            ((OptionItemView) view).setValue(value);
-        }
     }
 
     @LayoutRes

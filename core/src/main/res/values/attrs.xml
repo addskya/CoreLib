@@ -23,10 +23,13 @@
         <attr name="icon" />
     </declare-styleable>
 
-    <declare-styleable name="TextViewItem">
+    <declare-styleable name="ViewItem">
         <attr name="asterisk" />
         <attr name="text"  />
         <attr name="textColor"  />
+    </declare-styleable>
+
+    <declare-styleable name="TextViewItem">
         <attr name="value"  />
         <attr name="valueColor"  />
         <attr name="hint" />

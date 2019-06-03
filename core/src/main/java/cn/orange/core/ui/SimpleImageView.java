@@ -26,7 +26,7 @@ public class SimpleImageView extends SimpleDraweeView {
     private static final String TAG = "SimpleImageView";
 
     public SimpleImageView(@NonNull Context context) {
-        super(context);
+        this(context, null);
     }
 
     public SimpleImageView(@NonNull Context context,
@@ -38,17 +38,14 @@ public class SimpleImageView extends SimpleDraweeView {
                            @Nullable AttributeSet attrs,
                            int defStyle) {
         super(context, attrs, defStyle);
-        if (attrs != null) {
-            TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SimpleImageView);
-            if (ta.hasValue(R.styleable.SimpleImageView_src)) {
-                setSrc(ta.getResourceId(R.styleable.SimpleImageView_src, 0));
-            }
-            ta.recycle();
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SimpleImageView);
+        if (ta.hasValue(R.styleable.SimpleImageView_src)) {
+            setSrc(ta.getResourceId(R.styleable.SimpleImageView_src, 0));
         }
-
+        ta.recycle();
     }
 
-    public void setSrc(@DrawableRes int srcResId) {
+    public final void setSrc(@DrawableRes int srcResId) {
         if (srcResId == 0) {
             return;
         }

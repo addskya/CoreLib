@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 
 /**
- * Created by ChengHe.Zhang on 2019/4/1.
- * Email:chengheZhang@kaifa.cn
+ * Created by Orange on 2019/6/3
+ * Email:addskya@163.com
  */
 public abstract class BaseDialog extends AppCompatDialog {
 

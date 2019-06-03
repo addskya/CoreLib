@@ -15,6 +15,7 @@ import java.util.Calendar;
 
 import cn.orange.core.BaseDialog;
 import cn.orange.core.R;
+import cn.orange.core.util.LogUtil;
 
 /**
  * Created by Orange on 18-11-28.
@@ -63,9 +64,8 @@ public class DatePickerDialog extends BaseDialog {
 
         calendarView.setSelectedDate(Calendar.getInstance());
         calendarView.setOnDateChangedListener((widget, date, selected) ->
-                Log.i(TAG, "onDateSelected:" + date)
+                LogUtil.i(TAG, "onDateSelected:" + date)
         );
-
 
         View cancelView = view.findViewById(R.id.cancel);
         cancelView.setOnClickListener((v) -> dismiss());

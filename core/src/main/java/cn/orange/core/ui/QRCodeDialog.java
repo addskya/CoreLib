@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +17,7 @@ import java.io.File;
 import cn.orange.core.BaseDialog;
 import cn.orange.core.R;
 import cn.orange.core.util.BarCodeUtil;
+import cn.orange.core.util.LogUtil;
 
 /**
  * Created by Orange on 18-11-30.
@@ -28,10 +28,11 @@ import cn.orange.core.util.BarCodeUtil;
 public class QRCodeDialog extends BaseDialog {
     private static final String TAG = "BarCodeDialog";
     private static final String BAR_CODE_FILE = "BarCode.jpg";
+    private static final int CODE_DIMEN = 600;
     private CharSequence mBarCodeText;
 
     private QRCodeDialog(@NonNull Context context,
-                          @NonNull CharSequence text) {
+                         @NonNull CharSequence text) {
         super(context);
         mBarCodeText = text;
     }
@@ -68,7 +69,7 @@ public class QRCodeDialog extends BaseDialog {
         ImagePipeline imagePipeline = Fresco.getImagePipeline();
         imagePipeline.evictFromMemoryCache(uri);
         imagePipeline.evictFromCache(uri);
-        BarCodeUtil.createQRImage(text, 600, 600, cacheBarcodeFile);
+        BarCodeUtil.createQRImage(text, CODE_DIMEN, CODE_DIMEN, cacheBarcodeFile);
         return uri;
     }
 
@@ -82,7 +83,7 @@ public class QRCodeDialog extends BaseDialog {
         super.onDetachedFromWindow();
         // 删除二维码生成的临时文件
         File cache = getCacheFile(getContext());
-        Log.i(TAG, "Drop cache file:" + cache);
+        LogUtil.i(TAG, "Drop cache file:" + cache);
         if (!cache.delete()) {
             cache.deleteOnExit();
         }
