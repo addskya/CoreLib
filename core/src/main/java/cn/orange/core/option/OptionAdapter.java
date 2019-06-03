@@ -13,7 +13,7 @@ import cn.orange.core.BaseAdapter;
  * Created by Orange on 18-11-22.
  * Email:addskya@163.com
  */
-class OptionAdapter extends BaseAdapter<OptionItem, OptionContract.View> {
+class OptionAdapter extends BaseAdapter<Option, OptionContract.View> {
 
     OptionAdapter(@NonNull LayoutInflater inflater,
                   @Nullable OptionContract.View view) {
@@ -30,7 +30,7 @@ class OptionAdapter extends BaseAdapter<OptionItem, OptionContract.View> {
 
     @Override
     protected void bindViewHolder(@NonNull RecyclerView.ViewHolder holder,
-                                  @Nullable OptionItem data,
+                                  @Nullable Option data,
                                   @Nullable OptionContract.View view) {
         if (holder instanceof OptionViewHolder) {
             ((OptionViewHolder) holder).bindHolder(data, view);

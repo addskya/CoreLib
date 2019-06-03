@@ -7,7 +7,7 @@ package cn.orange.core.option;
 public class DefaultOptionCallBack implements OptionCallBack {
 
     @Override
-    public void onCallBack(OptionItem item) {
+    public void onCallBack(Option item) {
 
     }
 

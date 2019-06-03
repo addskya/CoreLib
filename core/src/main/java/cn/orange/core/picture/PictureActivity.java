@@ -30,7 +30,7 @@ import cn.orange.core.ActionBarActivity;
 import cn.orange.core.R;
 import cn.orange.core.option.DefaultOptionCallBack;
 import cn.orange.core.option.OptionDialog;
-import cn.orange.core.option.OptionItem;
+import cn.orange.core.option.Option;
 import cn.orange.core.ui.PictureDialog;
 import cn.orange.core.util.IDUtil;
 import cn.orange.core.util.IOUtil;
@@ -70,7 +70,7 @@ public abstract class PictureActivity extends ActionBarActivity
         Log.i(TAG, "pickPicture");
         new OptionDialog(this, new DefaultOptionCallBack() {
             @Override
-            public void onCallBack(OptionItem item) {
+            public void onCallBack(Option item) {
                 switch (item.getIdentifier()) {
                     case IDENTIFIER_ALBUM: {
                         String[] permission = {
@@ -108,10 +108,10 @@ public abstract class PictureActivity extends ActionBarActivity
             }
         }) {
             @Override
-            protected List<OptionItem> getOptionItems() {
+            protected List<Option> getOptions() {
                 return Arrays.asList(
-                        new OptionItem(IDENTIFIER_ALBUM, R.string.text_album),
-                        new OptionItem(IDENTIFIER_CAMERA, R.string.text_camera));
+                        new Option(IDENTIFIER_ALBUM, R.string.text_album),
+                        new Option(IDENTIFIER_CAMERA, R.string.text_camera));
             }
         }.show();
     }

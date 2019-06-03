@@ -10,7 +10,7 @@ import cn.orange.core.R;
  * Created by Orange on 18-11-22.
  * Email:addskya@163.com
  */
-public class OptionItem {
+public class Option {
 
     private int identifier;
 
@@ -20,11 +20,11 @@ public class OptionItem {
     @ColorRes
     private int textColor;
 
-    public OptionItem(int identifier, @StringRes int textId) {
+    public Option(int identifier, @StringRes int textId) {
         this(identifier, textId, R.color.black);
     }
 
-    public OptionItem(int identifier,
+    public Option(int identifier,
                       @StringRes int textId,
                       @ColorRes int textColor) {
         this.identifier = identifier;

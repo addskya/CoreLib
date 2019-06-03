@@ -44,7 +44,7 @@ public abstract class OptionDialog extends BaseDialog
                                       @Nullable ViewGroup parent) {
         DialogOptionBinding binding = DialogOptionBinding.inflate(inflater);
         OptionAdapter adapter = new OptionAdapter(inflater, this);
-        adapter.add(getOptionItems());
+        adapter.add(getOptions());
         binding.optionList.setAdapter(adapter);
         binding.setView(this);
         binding.cancel.setTextColor(getColorStateList(getCancelColor()));
@@ -53,7 +53,7 @@ public abstract class OptionDialog extends BaseDialog
     }
 
     @Override
-    public void onOptionItemClick(OptionItem item) {
+    public void onOptionClick(Option item) {
         if (mCallBack != null) {
             mCallBack.onCallBack(item);
         }
@@ -68,7 +68,7 @@ public abstract class OptionDialog extends BaseDialog
         dismiss();
     }
 
-    protected abstract List<OptionItem> getOptionItems();
+    protected abstract List<Option> getOptions();
 
     /**
      * 获取指定颜色

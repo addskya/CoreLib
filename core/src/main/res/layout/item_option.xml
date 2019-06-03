@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="optionItem"
-            type="cn.orange.core.option.OptionItem" />
+            name="option"
+            type="cn.orange.core.option.Option" />
 
         <variable
             name="view"
@@ -24,8 +24,8 @@
         android:lines="1"
         android:maxLines="1"
         android:minHeight="@dimen/gap_size_45"
-        android:onClick="@{() -> view.onOptionItemClick(optionItem)}"
+        android:onClick="@{() -> view.onOptionClick(option)}"
         android:textSize="@dimen/text_size_16"
-        app:optionItem="@{optionItem}"
+        app:Option="@{option}"
         tools:text="Item" />
 </layout>

@@ -9,7 +9,7 @@ public interface OptionContract {
 
     interface View {
 
-        void onOptionItemClick(OptionItem item);
+        void onOptionClick(Option item);
 
         void onCancelClick();
     }

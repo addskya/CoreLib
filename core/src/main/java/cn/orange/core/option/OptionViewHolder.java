@@ -29,13 +29,13 @@ class OptionViewHolder extends RecyclerView.ViewHolder {
         return new OptionViewHolder(binding.getRoot());
     }
 
-    void bindHolder(@Nullable OptionItem data,
+    void bindHolder(@Nullable Option data,
                     @Nullable OptionContract.View view) {
         ItemOptionBinding binding = DataBindingUtil.getBinding(itemView);
         if (binding == null) {
             return;
         }
-        binding.setOptionItem(data);
+        binding.setOption(data);
         binding.setView(view);
         binding.executePendingBindings();
     }

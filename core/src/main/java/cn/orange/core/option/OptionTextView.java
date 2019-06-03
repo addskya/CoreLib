@@ -29,11 +29,11 @@ public class OptionTextView extends AppCompatTextView {
     }
 
     /**
-     * Bind the OptionItem
+     * Bind the Option
      *
-     * @param item the optionItem
+     * @param item the Option
      */
-    public void setOptionItem(@Nullable OptionItem item) {
+    public void setOption(@Nullable Option item) {
         Resources res = getResources();
 
         int textId = item != null ? item.getTextId() : 0;

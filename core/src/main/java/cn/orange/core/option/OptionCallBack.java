@@ -11,7 +11,7 @@ public interface OptionCallBack {
      *
      * @param item the click option item
      */
-    void onCallBack(OptionItem item);
+    void onCallBack(Option item);
 
     /**
      * when the Cancel clicked
