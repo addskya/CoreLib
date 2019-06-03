@@ -32,8 +32,14 @@ public class EditTextItem extends TextViewItem {
     public EditTextItem(@NonNull Context context,
                         @Nullable AttributeSet attrs,
                         int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+        this(context, attrs, defStyleAttr, R.layout.edittext_item);
+    }
 
+    public EditTextItem(@NonNull Context context,
+                        @Nullable AttributeSet attrs,
+                        int defStyleAttr,
+                        @LayoutRes int layout) {
+        super(context, attrs, defStyleAttr, layout);
         mScannerView = findViewById(R.id.scanner);
 
         TypedArray a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.inputType});
@@ -43,13 +49,6 @@ public class EditTextItem extends TextViewItem {
         a = context.obtainStyledAttributes(attrs, R.styleable.EditTextItem);
         setScannable(a.getBoolean(R.styleable.EditTextItem_scannable, false));
         a.recycle();
-
-    }
-
-    @LayoutRes
-    @Override
-    protected int getChildView() {
-        return R.layout.edittext_item;
     }
 
     public final void setInputType(int inputType) {

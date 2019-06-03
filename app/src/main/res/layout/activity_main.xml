@@ -26,13 +26,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <cn.orange.core.ui.SpinnerItem
+        <cn.orange.core.ui.EditAreaItem
             android:id="@+id/spinnerView"
             android:layout_width="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/action_bar"
             android:layout_height="wrap_content"
-            app:text="Text1111"
-            app:asterisk="true"/>
+            android:minHeight="@dimen/gap_size_80"
+            android:inputType="textMultiLine"
+            app:asterisk="true"
+            app:layout_constraintTop_toBottomOf="@id/action_bar"
+            app:text="Address" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

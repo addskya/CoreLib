@@ -1,7 +1,6 @@
 package cn.orange.core.ui;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -17,7 +16,7 @@ import cn.orange.core.SimpleAdapter;
  * Created by Orange on 2019/5/31
  * Email:addskya@163.com
  */
-public class SpinnerItem extends ViewItem {
+public final class SpinnerItem extends ViewItem {
 
     protected final Spinner mSpinner;
 
@@ -33,7 +32,7 @@ public class SpinnerItem extends ViewItem {
     public SpinnerItem(@NonNull Context context,
                        @Nullable AttributeSet attrs,
                        int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+        super(context, attrs, defStyleAttr, R.layout.spinner_item);
 
         mSpinner = findViewById(R.id.spinner);
     }
@@ -50,11 +49,5 @@ public class SpinnerItem extends ViewItem {
                 }
             });
         }
-    }
-
-    @LayoutRes
-    @Override
-    protected int getChildView() {
-        return R.layout.spinner_item;
     }
 }

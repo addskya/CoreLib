@@ -22,21 +22,13 @@ public abstract class ViewItem extends FrameLayout {
     protected final View mAsteriskView;
     protected final TextView mTextView;
 
-    public ViewItem(@NonNull Context context) {
-        this(context, null);
-    }
-
-    public ViewItem(@NonNull Context context,
-                    @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
     public ViewItem(@NonNull Context context,
                     @Nullable AttributeSet attrs,
-                    int defStyleAttr) {
+                    int defStyleAttr,
+                    @LayoutRes int layout) {
         super(context, attrs, defStyleAttr);
 
-        View.inflate(context, getChildView(), this);
+        View.inflate(context, layout, this);
 
         mAsteriskView = findViewById(R.id.asterisk);
         mTextView = findViewById(R.id.text);
@@ -70,8 +62,4 @@ public abstract class ViewItem extends FrameLayout {
             mTextView.setTextColor(color);
         }
     }
-
-
-    @LayoutRes
-    protected abstract int getChildView();
 }

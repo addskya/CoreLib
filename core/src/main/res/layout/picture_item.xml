@@ -55,6 +55,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text"
         app:stackFromEnd="false"
-        tools:listitem="@layout/item_tabbed" />
+        tools:listitem="@layout/item_tabbed"
+        tools:minHeight="@dimen/gap_size_50" />
 
 </android.support.constraint.ConstraintLayout>

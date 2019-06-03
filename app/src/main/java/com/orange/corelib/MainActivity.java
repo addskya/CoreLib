@@ -28,8 +28,8 @@ public class MainActivity extends LocationActivity {
             adapter.add(new Country("Name:" + i));
         }
 
-        SpinnerItem item = binding.spinnerView;
-        item.setAdapter(adapter, (item1) -> LogUtil.i(TAG, "item:" + item1.getName()));
+        //SpinnerItem item = binding.spinnerView;
+        //item.setAdapter(adapter, (item1) -> LogUtil.i(TAG, "item:" + item1.getName()));
     }
 
     public void onClick(View v) {

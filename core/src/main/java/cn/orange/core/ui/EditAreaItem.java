@@ -1,7 +1,6 @@
 package cn.orange.core.ui;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -26,12 +25,13 @@ public class EditAreaItem extends EditTextItem {
     public EditAreaItem(@NonNull Context context,
                         @Nullable AttributeSet attrs,
                         int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+        this(context, attrs, defStyleAttr, R.layout.editarea_item);
     }
 
-    @LayoutRes
-    @Override
-    protected int getChildView() {
-        return R.layout.editarea_item;
+    public EditAreaItem(@NonNull Context context,
+                        @Nullable AttributeSet attrs,
+                        int defStyleAttr,
+                        int layout) {
+        super(context, attrs, defStyleAttr, layout);
     }
 }
