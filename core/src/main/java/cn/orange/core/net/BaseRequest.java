@@ -22,14 +22,14 @@ import static cn.orange.core.net.Response.getResponseValue;
  * Created by Orange on 2019/4/1.
  * Email:addskya@163.com
  */
+@SuppressWarnings("all")
 public abstract class BaseRequest {
-
     private static final String TAG = "BaseRequest";
     private final Gson mGson;
     private final Api mApi;
 
     protected BaseRequest() {
-        mGson = new Gson();
+        mGson = buildGson();
 
         NetworkHelper manager = NetworkHelper.get();
         mApi = getClientRetrofit(manager).create(Api.class);
@@ -56,6 +56,10 @@ public abstract class BaseRequest {
 
     protected Retrofit getClientRetrofit(@NonNull NetworkHelper manager) {
         return manager.getRetrofit();
+    }
+
+    protected Gson buildGson() {
+        return new Gson();
     }
 
     /**
@@ -126,7 +130,6 @@ public abstract class BaseRequest {
      * @param para 请求指定接口时,需要的参数
      * @return Observable包装的响应
      */
-    @SuppressWarnings("unused")
     protected Observable<Response<?>> post(@NonNull final String api,
                                            @Nullable final Map<String, Object> para) {
         Log.d(TAG, "call api : " + api + "\n" + "parameters : " + para);
@@ -134,7 +137,6 @@ public abstract class BaseRequest {
                 .map(resp -> {
                     int code = getResponseCode(resp);
                     String message = getResponseMsg(resp);
-                    //handleResponseCode(code);
                     return new Response<>(code, message);
                 });
     }
@@ -149,7 +151,6 @@ public abstract class BaseRequest {
      * @param body 请求指定接口时,需要的参数
      * @return Observable包装的响应
      */
-    @SuppressWarnings("unused")
     protected Observable<Response<?>> post(@NonNull final String api,
                                            @NonNull final RequestBody body) {
         Log.d(TAG, "call api : " + api + "\n" + "parameters : " + body);
@@ -157,7 +158,6 @@ public abstract class BaseRequest {
                 .map(resp -> {
                     int code = getResponseCode(resp);
                     String message = getResponseMsg(resp);
-                    //handleResponseCode(code);
                     return new Response<>(code, message);
                 });
     }
@@ -173,7 +173,6 @@ public abstract class BaseRequest {
      * @param responseType 返回数据的协议Entry类
      * @return Observable包装的响应
      */
-    @SuppressWarnings("unused")
     protected <T> Observable<Response<T>> post(@NonNull final String api,
                                                @Nullable final Map<String, Object> para,
                                                @NonNull final Type responseType) {
@@ -183,12 +182,10 @@ public abstract class BaseRequest {
                     int code = getResponseCode(resp);
                     String message = getResponseMsg(resp);
                     T value = getResponseValue(mGson, resp, responseType);
-                    //handleResponseCode(code);
                     return new Response<>(code, message, value);
                 });
     }
 
-    @SuppressWarnings("unused")
     protected <T> Observable<Response<T>> upload(@NonNull final String api,
                                                  @NonNull final Map<String, RequestBody> para) {
         Log.d(TAG, "call api : " + api + "\n" + "parameters : " + para);
@@ -196,7 +193,6 @@ public abstract class BaseRequest {
                 .map(resp -> {
                     int code = getResponseCode(resp);
                     String message = getResponseMsg(resp);
-                    //handleResponseCode(code);
                     return new Response<>(code, message);
                 });
     }

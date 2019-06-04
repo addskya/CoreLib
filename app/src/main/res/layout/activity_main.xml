@@ -26,39 +26,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <cn.orange.core.ui.TextViewItem
-            android:id="@+id/tr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/gap_size_1"
+        <Button
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/action_bar"
-            app:text="TR" />
-
-        <cn.orange.core.ui.EditAreaItem
-            android:id="@+id/address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/gap_size_1"
-            android:inputType="textMultiLine"
-            android:minHeight="@dimen/gap_size_80"
-            app:asterisk="true"
-            app:layout_constraintTop_toBottomOf="@+id/tr"
-            app:text="Address" />
-
-        <cn.orange.core.ui.EditTextItem
-            android:id="@+id/pole"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/gap_size_1"
-            app:layout_constraintTop_toBottomOf="@+id/address"
-            app:text="Pole" />
-
-        <cn.orange.core.ui.SpinnerItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/gap_size_1"
-            app:layout_constraintTop_toBottomOf="@+id/pole"
-            app:text="site" />
+            android:text="Test"
+            android:onClick="onClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>
