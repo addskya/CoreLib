@@ -239,6 +239,17 @@ public abstract class BaseAdapter<D, V> extends RecyclerView.Adapter<RecyclerVie
     }
 
     /**
+     * Returns the element at the specified position in this list.
+     *
+     * @param  position index of the element to return
+     * @return the element at the specified position in this list
+     * @throws IndexOutOfBoundsException {@inheritDoc}
+     */
+    public D getItem(int position) {
+        return getAll().get(position);
+    }
+
+    /**
      * Set whether or not allow data repeated
      *
      * @param allowRepeated whether or not allow repeated

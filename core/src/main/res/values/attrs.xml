@@ -53,7 +53,13 @@
         <attr name="src" format="reference" />
     </declare-styleable>
 
+    <attr name="listDivider" format="reference" />
+
     <declare-styleable name="RecyclerView">
-        <attr name="listDivider" format="reference" />
+        <attr name="listDivider" />
+    </declare-styleable>
+
+    <declare-styleable name="RecyclerList">
+        <attr name="listDivider" />
     </declare-styleable>
 </resources>
