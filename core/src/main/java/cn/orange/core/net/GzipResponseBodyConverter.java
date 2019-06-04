@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import java.io.IOException;
 
 import cn.orange.core.util.GzipUtil;
+import cn.orange.core.util.LogUtil;
 import okhttp3.ResponseBody;
 import okio.BufferedSource;
 import okio.Okio;
@@ -14,10 +15,10 @@ import retrofit2.Converter;
  * Created by Orange on 2019/4/1.
  * Email:addskya@163.com
  */
-class GzipGsonResponseBodyConverter implements Converter<ResponseBody, String> {
+class GzipResponseBodyConverter implements Converter<ResponseBody, String> {
     private static final String TAG = "Gzip";
 
-    GzipGsonResponseBodyConverter() {
+    GzipResponseBodyConverter() {
     }
 
     @Override
@@ -25,6 +26,7 @@ class GzipGsonResponseBodyConverter implements Converter<ResponseBody, String> {
         BufferedSource bufferedSource = Okio.buffer(value.source());
         String content = GzipUtil.uncompress(bufferedSource.readUtf8(), "UTF-8");
         bufferedSource.close();
+        LogUtil.i(TAG, content);
         return content;
     }
 }

@@ -14,13 +14,13 @@ import retrofit2.Retrofit;
  * Created by Orange on 2019/4/1.
  * Email:addskya@163.com
  */
-class GzipGsonConvertFactory extends Converter.Factory {
+class GzipConvertFactory extends Converter.Factory {
 
-    private GzipGsonConvertFactory() {
+    private GzipConvertFactory() {
     }
 
     static Converter.Factory create() {
-        return new GzipGsonConvertFactory();
+        return new GzipConvertFactory();
     }
 
     @Nullable
@@ -28,7 +28,7 @@ class GzipGsonConvertFactory extends Converter.Factory {
     public Converter<ResponseBody, ?> responseBodyConverter(Type type,
                                                             Annotation[] annotations,
                                                             Retrofit retrofit) {
-        return new GzipGsonResponseBodyConverter();
+        return new GzipResponseBodyConverter();
     }
 
 
@@ -38,7 +38,7 @@ class GzipGsonConvertFactory extends Converter.Factory {
                                                           Annotation[] parameterAnnotations,
                                                           Annotation[] methodAnnotations,
                                                           Retrofit retrofit) {
-        return new GzipGsonRequestBodyConverter<>();
+        return new GzipRequestBodyConverter<>();
     }
 
 }

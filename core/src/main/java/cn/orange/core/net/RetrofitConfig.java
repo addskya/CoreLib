@@ -26,42 +26,29 @@ class RetrofitConfig {
     private static final int TIME_OUT_READ = TIME_OUT;
     private static final int TIME_OUT_WRITE = TIME_OUT;
 
-    RetrofitConfig() {
-
+    private RetrofitConfig() {
     }
 
     static Retrofit getRetrofit(@NonNull String baseUrl) {
-        /*return new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(getOkHttpClient())
-                .build();*/
-        return getBuilder(baseUrl)
-                .build();
+        return with(base(baseUrl)).build();
     }
 
     static Retrofit getZipRetrofit(@NonNull String baseUrl) {
-        /*return new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GzipGsonConvertFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(getOkHttpClient())
-                .build();*/
-        return getBuilder(baseUrl)
-                .addConverterFactory(GzipGsonConvertFactory.create())
+        return with(base(baseUrl)
+                .addConverterFactory(GzipConvertFactory.create()))
                 .build();
     }
 
-    private static Retrofit.Builder getBuilder(@NonNull String baseUrl) {
+    private static Retrofit.Builder base(@NonNull String baseUrl) {
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(getOkHttpClient());
+    }
+
+    private static Retrofit.Builder with(@NonNull Retrofit.Builder builder) {
+        return builder.addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create());
     }
 
     private static OkHttpClient getOkHttpClient() {

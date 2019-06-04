@@ -15,7 +15,7 @@ import retrofit2.Converter;
  * Created by Orange on 2019/4/1.
  * Email:addskya@163.com
  */
-class GzipGsonRequestBodyConverter<T> implements Converter<T, RequestBody> {
+class GzipRequestBodyConverter<T> implements Converter<T, RequestBody> {
     private static final String TAG = "Gzip";
     private static final MediaType MEDIA_TYPE = MediaType.parse("application/json; charset=UTF-8");
 
