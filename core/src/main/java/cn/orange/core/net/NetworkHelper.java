@@ -2,16 +2,18 @@ package cn.orange.core.net;
 
 import android.support.annotation.NonNull;
 
-import retrofit2.Retrofit;
-
 
 /**
  * Created by Orange on 2019/4/1.
  * Email:addskya@163.com
+ *
+ * 只用来记录服务器地址
  */
+@SuppressWarnings("unused")
 public class NetworkHelper {
     @SuppressWarnings("unused")
     private static final String TAG = "NetworkHelper";
+
     private String mServerUrl;
 
     // 偷个懒
@@ -40,16 +42,7 @@ public class NetworkHelper {
         mServerUrl = env.getUrl();
     }
 
-    @NonNull
-    Retrofit rx() {
-        return RetrofitConfig.rx(mServerUrl);
-    }
-
-    Retrofit rxZip() {
-        return RetrofitConfig.rxZip(mServerUrl);
-    }
-
-    public Retrofit call() {
-        return RetrofitConfig.call(mServerUrl);
+    String getUrl() {
+        return mServerUrl;
     }
 }

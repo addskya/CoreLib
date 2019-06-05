@@ -10,11 +10,16 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
+import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import static cn.orange.core.net.Response.getResponseCode;
 import static cn.orange.core.net.Response.getResponseMsg;
@@ -34,7 +39,7 @@ public abstract class BaseRequest {
         mGson = buildGson();
 
         NetworkHelper manager = NetworkHelper.get();
-        mApi = getClientRetrofit(manager).create(Api.class);
+        mApi = getRetrofit(manager.getUrl()).create(Api.class);
     }
 
     /**
@@ -56,10 +61,21 @@ public abstract class BaseRequest {
         return new HashMap<>(1);
     }
 
-    protected Retrofit getClientRetrofit(@NonNull NetworkHelper manager) {
-        return manager.rx();
+    /**
+     * 创建Retrofit实例
+     *
+     * @param url 服务器url
+     * @return Retrofit实例
+     */
+    protected Retrofit getRetrofit(@NonNull String url) {
+        return rx(url);
     }
 
+    /**
+     * 创建Gson解析器
+     *
+     * @return Gson解析器
+     */
     protected Gson buildGson() {
         return new Gson();
     }
@@ -235,5 +251,56 @@ public abstract class BaseRequest {
                     String message = getResponseMsg(resp);
                     return new Response<>(code, message);
                 });
+    }
+
+    protected static Retrofit call(@NonNull String url) {
+        return scalar(base(url)).build();
+    }
+
+    protected static Retrofit rx(@NonNull String url) {
+        return rx(gson(scalar(base(url)))).build();
+    }
+
+    protected static Retrofit rxZip(@NonNull String url) {
+        return rx(gson(scalar(zip(base(url))))).build();
+    }
+
+    protected static Retrofit.Builder base(@NonNull String url) {
+        return new Retrofit.Builder()
+                .baseUrl(url)
+                .client(getOkHttpClient());
+    }
+
+    protected static Retrofit.Builder scalar(@NonNull Retrofit.Builder builder) {
+        return builder.addConverterFactory(ScalarsConverterFactory.create());
+    }
+
+    protected static Retrofit.Builder gson(@NonNull Retrofit.Builder builder) {
+        return builder.addConverterFactory(GsonConverterFactory.create());
+    }
+
+    protected static Retrofit.Builder rx(@NonNull Retrofit.Builder builder) {
+        return builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+    }
+
+    protected static Retrofit.Builder zip(@NonNull Retrofit.Builder builder) {
+        return builder.addConverterFactory(GzipConvertFactory.create());
+    }
+
+    private static final int TIME_OUT = 20;
+    private static final int TIME_OUT_CONNECT = TIME_OUT;
+    private static final int TIME_OUT_READ = TIME_OUT;
+    private static final int TIME_OUT_WRITE = TIME_OUT;
+
+    private static OkHttpClient getOkHttpClient() {
+        return new OkHttpClient.Builder()
+                .retryOnConnectionFailure(false)
+                .connectTimeout(TIME_OUT_CONNECT, TimeUnit.SECONDS)
+                .readTimeout(TIME_OUT_READ, TimeUnit.SECONDS)
+                .writeTimeout(TIME_OUT_WRITE, TimeUnit.SECONDS)
+                .addInterceptor(new HeaderInterceptor())
+                .addInterceptor(new AuthInterceptor())
+                .addInterceptor(new LogInterceptor())
+                .build();
     }
 }
