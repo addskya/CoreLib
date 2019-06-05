@@ -22,7 +22,7 @@ public abstract class SimpleAdapter<D, V> extends android.widget.BaseAdapter {
 
     private final ArrayList<D> mData;
     private final LayoutInflater mInflater;
-    private final V mView;
+    protected final V mView;
     private boolean mAllowRepeated;
     private boolean mInsertToHead;
 

@@ -21,7 +21,7 @@ public abstract class BaseAdapter<D, V> extends RecyclerView.Adapter<RecyclerVie
 
     private final ArrayList<D> mData;
     private final LayoutInflater mInflater;
-    private final V mView;
+    protected final V mView;
     private boolean mAllowRepeated;
     private boolean mInsertToHead;
 

@@ -69,6 +69,18 @@ public abstract class BottomNavigationActivity extends BaseActivity {
     }
 
     /**
+     * 模拟用户点击Tab项,以实现Tab切换.
+     *
+     * @param position tab index
+     */
+    private void checkMenuItem(int position) {
+        Menu menu = mNavigationView.getMenu();
+        final int tabCount = menu.size();
+        position = Math.max(0, Math.min(position, tabCount - 1));
+        menu.getItem(position).setChecked(true);
+    }
+
+    /**
      * 显示指定位置的Fragment
      *
      * @param position Fragment位置
@@ -139,6 +151,6 @@ public abstract class BottomNavigationActivity extends BaseActivity {
         int defaultSelectedPosition = getValidSelectedPosition();
         mPosition = savedInstanceState != null ? savedInstanceState.getInt(
                 KEY_POSITION, defaultSelectedPosition) : defaultSelectedPosition;
-        showFragment(mPosition);
+        checkMenuItem(mPosition);
     }
 }
