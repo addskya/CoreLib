@@ -16,6 +16,6 @@ public abstract class BaseZipRequest extends BaseRequest {
 
     @Override
     protected Retrofit getClientRetrofit(@NonNull NetworkHelper manager) {
-        return manager.getZipRetrofit();
+        return manager.rxZip();
     }
 }

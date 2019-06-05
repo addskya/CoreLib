@@ -6,12 +6,14 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
+import retrofit2.Call;
 import retrofit2.Retrofit;
 
 import static cn.orange.core.net.Response.getResponseCode;
@@ -55,7 +57,7 @@ public abstract class BaseRequest {
     }
 
     protected Retrofit getClientRetrofit(@NonNull NetworkHelper manager) {
-        return manager.getRetrofit();
+        return manager.rx();
     }
 
     protected Gson buildGson() {
@@ -118,6 +120,44 @@ public abstract class BaseRequest {
                     T value = getResponseValue(mGson, resp, responseType);
                     return new Response<>(code, message, value);
                 });
+    }
+
+    /**
+     * 请求网络接口
+     * 具体的api接口,
+     *
+     * @param api    api
+     * @param params 参数
+     * @return Call
+     */
+    protected Call<String> call(@NonNull final String api,
+                                @Nullable Map<String, Object> params) {
+        Log.d(TAG, "call api : " + api);
+        return mApi.getCall(api, params);
+    }
+
+    /**
+     * 请求网络接口
+     *
+     * @param api         api接口
+     * @param params      请求参数
+     * @param resonseType 泛型数据类型
+     * @param <T>         泛型
+     * @return 请求泛型结果
+     * @throws IOException
+     * @throws RuntimeException
+     */
+    protected <T> Response<T> call(@NonNull final String api,
+                                   @Nullable Map<String, Object> params,
+                                   @NonNull final Type resonseType)
+            throws IOException, RuntimeException {
+        Log.d(TAG, "call api : " + api);
+        Call<String> call = mApi.getCall(api, params);
+        String body = call.execute().body();
+        int code = getResponseCode(body);
+        String message = getResponseMsg(body);
+        T value = getResponseValue(mGson, body, resonseType);
+        return new Response<>(code, message, value);
     }
 
     /**

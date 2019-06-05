@@ -12,9 +12,7 @@ import retrofit2.Retrofit;
 public class NetworkHelper {
     @SuppressWarnings("unused")
     private static final String TAG = "NetworkHelper";
-
-    private Retrofit mRetrofit;
-    private Retrofit mZipRetrofit;
+    private String mServerUrl;
 
     // 偷个懒
     private static NetworkHelper sInstance;
@@ -39,17 +37,19 @@ public class NetworkHelper {
     }
 
     private void createRetrofit(@NonNull BaseEnvironment env) {
-        String url = env.getUrl();
-        mRetrofit = RetrofitConfig.getRetrofit(url);
-        mZipRetrofit = RetrofitConfig.getZipRetrofit(url);
+        mServerUrl = env.getUrl();
     }
 
     @NonNull
-    Retrofit getRetrofit() {
-        return mRetrofit;
+    Retrofit rx() {
+        return RetrofitConfig.rx(mServerUrl);
     }
 
-    Retrofit getZipRetrofit() {
-        return mZipRetrofit;
+    Retrofit rxZip() {
+        return RetrofitConfig.rxZip(mServerUrl);
+    }
+
+    public Retrofit call() {
+        return RetrofitConfig.call(mServerUrl);
     }
 }

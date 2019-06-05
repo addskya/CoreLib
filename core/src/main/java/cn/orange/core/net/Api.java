@@ -7,6 +7,7 @@ import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
+import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -31,8 +32,10 @@ interface Api {
      * @return Request Response
      */
     @GET("{api}")
-    Observable<String> get(@Path(value = "api", encoded = true) @NonNull String api,
-                           @QueryMap Map<String, Object> params);
+    Observable<String> get(@Path(value = "api", encoded = true)
+                           @NonNull String api,
+                           @QueryMap
+                           @NonNull Map<String, Object> params);
 
     /**
      * 请求网络接口
@@ -45,17 +48,29 @@ interface Api {
      * @return Observable包装的响应
      */
     @POST("{api}")
-    Observable<String> post(@Path(value = "api", encoded = true) @NonNull String api,
-                            @Body @Nullable Map<String, Object> params);
+    Observable<String> post(@Path(value = "api", encoded = true)
+                            @NonNull String api,
+                            @Body
+                            @Nullable Map<String, Object> params);
 
     @Headers({"Content-Type: application/json", "Accept: application/json"})
     @POST("{api}")
-    Observable<String> post(@Path(value = "api", encoded = true) @NonNull String api,
-                            @Body @NonNull RequestBody body);
+    Observable<String> post(@Path(value = "api", encoded = true)
+                            @NonNull String api,
+                            @Body
+                            @NonNull RequestBody body);
 
     @PUT
     @Multipart
     @POST("{api}")
-    Observable<String> upload(@Path(value = "api", encoded = true) @NonNull String api,
-                              @PartMap @NonNull Map<String, RequestBody> params);
+    Observable<String> upload(@Path(value = "api", encoded = true)
+                              @NonNull String api,
+                              @PartMap
+                              @NonNull Map<String, RequestBody> params);
+
+    @GET("{api}")
+    Call<String> getCall(@Path(value = "api", encoded = true)
+                      @NonNull String api,
+                      @QueryMap
+                      @NonNull Map<String, Object> params);
 }

@@ -77,7 +77,10 @@ public abstract class BottomNavigationActivity extends BaseActivity {
         Menu menu = mNavigationView.getMenu();
         final int tabCount = menu.size();
         position = Math.max(0, Math.min(position, tabCount - 1));
-        menu.getItem(position).setChecked(true);
+        for(int index = 0 ; index < tabCount ; index++) {
+            boolean checked = index == position;
+            menu.getItem(index).setChecked(checked);
+        }
     }
 
     /**

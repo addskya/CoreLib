@@ -29,26 +29,38 @@ class RetrofitConfig {
     private RetrofitConfig() {
     }
 
-    static Retrofit getRetrofit(@NonNull String baseUrl) {
-        return with(base(baseUrl)).build();
+    static Retrofit call(@NonNull String url) {
+        return scalar(base(url)).build();
     }
 
-    static Retrofit getZipRetrofit(@NonNull String baseUrl) {
-        return with(base(baseUrl)
-                .addConverterFactory(GzipConvertFactory.create()))
-                .build();
+    static Retrofit rx(@NonNull String url) {
+        return rx(gson(scalar(base(url)))).build();
     }
 
-    private static Retrofit.Builder base(@NonNull String baseUrl) {
+    static Retrofit rxZip(@NonNull String url) {
+        return rx(gson(scalar(zip(base(url))))).build();
+    }
+
+    private static Retrofit.Builder base(@NonNull String url) {
         return new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .baseUrl(url)
                 .client(getOkHttpClient());
     }
 
-    private static Retrofit.Builder with(@NonNull Retrofit.Builder builder) {
-        return builder.addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create());
+    private static Retrofit.Builder scalar(@NonNull Retrofit.Builder builder) {
+        return builder.addConverterFactory(ScalarsConverterFactory.create());
+    }
+
+    private static Retrofit.Builder gson(@NonNull Retrofit.Builder builder) {
+        return builder.addConverterFactory(GsonConverterFactory.create());
+    }
+
+    private static Retrofit.Builder rx(@NonNull Retrofit.Builder builder) {
+        return builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+    }
+
+    private static Retrofit.Builder zip(@NonNull Retrofit.Builder builder) {
+        return builder.addConverterFactory(GzipConvertFactory.create());
     }
 
     private static OkHttpClient getOkHttpClient() {
